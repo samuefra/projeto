@@ -10,11 +10,13 @@ LGBT2019 <- LGBT %>%
 LGBT2019 <- LGBT2019 %>%
   select(raca_cor, homicidios)
 
+percentis <- LGBT2019 %>%
+  select(homicidios)%>%
+  mutate(percentil=100*homicidios/sum(homicidios))
 install.packages("RColorBrewer")
 library(RColorBrewer)
 myPalette <- brewer.pal(5, "Set2") 
-labels <- 
-pie(LGBT2019$homicidios,labels = c("Branca", "Parda" , "Preta" , "Não Identificado"),
+pie(LGBT2019$homicidios,labels = c("Branca 36,7%", "Parda 27,4%" , "Preta 9,72%" , "Não Identificado 26,1%"),
     border="white", 
     col=myPalette,
     main = "LGBTQIA+ Assassinados em 2019 por etnia")
